@@ -1,0 +1,70 @@
+README
+---------------------
+
+ * Introduction
+---------------------
+ 	This README includes documentation around how to use the Test software for SFCS and the dependencies, known issues, bugs, etc.
+
+
+ * Dependencies 
+ ------------------------------
+ 	- This Test software is platform independent and should run on Linux and Mac Operating systems (provided the dependencies are resolved)
+ 	
+ 	- Verified on Ubuntu 14.04 Linux and Mac Operating System
+ 	- Requires "Python3" or above to run the software
+ 	- Requires "requests" package in Python3
+ 	- Requires "pyyaml" package in Python3
+ 	
+
+ Installation
+  ------------------------------
+ 	- To install python3 on a Ubuntu1404 machine,
+ 	
+ 		$ sudo apt-get update
+		$ sudo apt-get install build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev
+		$ sudo apt-get install python3-pip python3-dev
+		
+	- Install 'requests' module using pip (if not available)
+		$sudo pip3 install requests
+	
+	- Install 'pyyaml' package using pip
+		$sudo pip3 install pyyaml
+		
+
+ * How to run the Test Suite:
+ -----------------------------
+    - Unzip the file sfcs_testcode.zip
+    - $cd SFCS
+ 	- Add Project home dir in the PYTHONPATH
+ 		e.g. export PYTHONPATH=$PYTHONPATH:"/home/ubuntu/SFCS"
+ 		
+ 	- testconfig file used to run the suite should be exported as an environmental variable. User can reuse this file or create own yml file for test purpose.
+ 		E.g. export testconfig_file="/home/ubuntu/SFCS/sfcs_config.yml"
+ 		
+ 	- Python suite files are present under /SFCS/suites folder
+ 	- Suite files are  written using Python UnitTest module. 
+ 	
+ 	- To run a suite,
+ 		$python3 -m unittest suites/test_sfcs_smoke_scenarios.py 
+ 		$python3 -m unittest suites/test_sfcs_func_knight.py
+ 		
+ 	- Log folder will be created upon execution and will be available under SFCS/logs/sfcs_execution.log
+ 
+ 
+ * Troubleshooting
+ ------------------
+ 	- Test logs will be obtained under the folder $PWD/SFCS/logs/sfcs_execution.log
+
+	- If the following error is found while running the script,
+		Traceback (most recent call last):
+		  File "/home/ubuntu/SFCS/test_sfcs_func_king.py", line 13, in setUpClass
+		   self.config = ConfigUtil().readConfigurationFile()
+		  File "/home/ubuntu/SFCS/config_utils.py", line 24, in readConfigurationFile
+		    raise RuntimeError("test_config_file IS NOT SET IN ENVIRONMENT OR GIVEN CONFIG FILE DOES NOT EXIST. PLEASE SET export testconfig_file='/Location/FileName' ")
+		RuntimeError: test_config_file IS NOT SET IN ENVIRONMENT OR GIVEN CONFIG FILE DOES NOT EXIST. PLEASE SET export testconfig_file='/Location/FileName'
+		
+	Solution export 'testconfig_file' and set the path
+ 	E.g. export testconfig_file="/home/ubuntu/SFCS/config.yml"
+
+ * Bugs
+ ------------------

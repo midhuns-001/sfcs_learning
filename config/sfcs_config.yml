@@ -1,0 +1,6 @@
+
+TEST_URL: "http://chesstest.solidfire.net:8080/json-rpc"
+JSON_RPC: "2.0"
+SESSION_ID: 1
+TEST_METHOD: "MakeMove"
+PLAYER_STATE: "w"
